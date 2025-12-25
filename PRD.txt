@@ -1,0 +1,118 @@
+1. App Overview
+
+Name: KeepIt
+Type: Productivity / Personal Knowledge Management
+Goal: Enable users to save, categorize, and quickly retrieve links, videos, documents, and notes.
+Target Users: Students, knowledge workers, social media users, researchers.
+
+2. Key Features
+
+Quick Save
+
+Save links, media, PDFs, or notes instantly.
+
+Browser extension and mobile share extension.
+
+Categorization & Tagging
+
+Add tags, folders, and boards.
+
+Smart suggestions based on content type.
+
+Search & Filter
+
+Full-text search across saved items.
+
+Filters by type, date, tag, or board.
+
+Collections / Boards
+
+Group related content.
+
+Nested folders for hierarchy.
+
+Offline Access
+
+Cache important items for offline viewing.
+
+Sync Across Devices
+
+Cloud sync ensures consistency across web and mobile.
+
+AI Assistance (Optional Premium Feature)
+
+Auto-tagging and content recommendations.
+
+Reminders & Pinning
+
+Pin important items.
+
+Set optional reminders.
+
+3. User Stories
+
+As a user, I want to save a link with one click so I can access it later.
+
+As a user, I want to categorize items into boards so I can organize my content.
+
+As a user, I want to search quickly across all saved content.
+
+As a user, I want to access saved items offline.
+
+As a user, I want color-coded alerts for success, warning, and errors.
+
+4. Tech Stack
+
+Frontend: Next.js + React + TailwindCSS
+
+Backend: Node.js + Express / NestJS
+
+Database: PostgreSQL (primary), Redis (cache)
+
+Cloud Storage: AWS S3 / Firebase Storage
+
+Search Engine: MeiliSearch or Elasticsearch
+
+Authentication: JWT + OAuth
+
+AI: OpenAI / embeddings for recommendations
+
+Hosting: Vercel (frontend), Render / AWS (backend)
+
+5. Color Palette (Dark Mode)
+
+See Step 1: includes primary, secondary, accent, background, surface, text, states, hover, active.
+
+6. UI / UX
+
+Dark mode focused for eye comfort.
+
+High contrast between text and background.
+
+Interactive feedback for buttons, inputs, checkboxes.
+
+Responsive layout: desktop, tablet, mobile.
+
+Hover, active, focus, disabled states visually distinct.
+
+7. MVP Scope
+
+Save and organize links.
+
+Tagging and boards.
+
+Search and filter.
+
+Cards view of saved items.
+
+Responsive homepage with dark mode and interactive buttons.
+
+8. Optional / Future Features
+
+AI suggestions and auto-tagging.
+
+Offline caching for all content types.
+
+User profile with activity history.
+
+Share boards publicly or with friends.

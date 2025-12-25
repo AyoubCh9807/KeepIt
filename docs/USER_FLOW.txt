@@ -1,0 +1,186 @@
+1. Entry Points
+A. Web / Desktop
+
+User visits landing page / Hero section.
+
+Options available:
+
+Sign up / Login
+
+Try free version / Learn more
+
+If signed in → Dashboard / Home
+
+B. Mobile
+
+User opens app or taps Share / Save from browser or PDF reader.
+
+If first-time user → prompt Sign Up / Login
+
+Otherwise → Quick Save dialog appears.
+
+2. Authentication Flow
+
+Sign Up
+
+Email + Password, or OAuth (Google, GitHub)
+
+Email verification (optional)
+
+Redirect to Dashboard / Home
+
+Login
+
+Email + Password, or OAuth
+
+Redirect to Dashboard / Home
+
+Forgot Password
+
+Enter email → receive reset link → create new password → Login
+
+3. Main Dashboard / Home
+
+Goal: Central hub for accessing saved items, boards, and search.
+
+Header / Navigation
+
+Logo / App Name
+
+Search bar (full-text search across links, notes, PDFs)
+
+Quick Add button (+)
+
+Profile / Settings / Logout
+
+Boards / Collections Overview
+
+Cards for each board
+
+Click → open board
+
+Pinned / Recent Items
+
+Cards or grid layout
+
+Pinned items highlighted
+
+Quick Save Shortcut
+
+Floating “+” button
+
+Opens modal to save:
+
+Link / URL
+
+Note / Text
+
+PDF / Document
+
+4. Saving & Organizing Items
+
+User clicks Quick Save or uses browser/mobile extension.
+
+Save Modal:
+
+Auto-suggested board based on recent activity
+
+Add / edit tags
+
+Add notes or description
+
+Option to pin or set a reminder
+
+Auto-tagging (premium AI) suggests categories
+
+Click Save
+
+Confirmation toast
+
+Item appears in board & dashboard
+
+5. Boards / Collections Flow
+
+Open board
+
+Grid/list of items (links, notes, PDFs)
+
+Cards show type and tags
+
+Card Actions:
+
+Open / preview
+
+Edit
+
+Move to another board
+
+Delete
+
+Pin / unpin
+
+Filters:
+
+By type (link, note, PDF)
+
+By tag
+
+By date
+
+By search query
+
+6. Search Flow
+
+Enter query in search bar
+
+Live results appear (grouped by type or board)
+
+Click result → preview / open item
+
+Edit tags, board, or notes from search result
+
+7. Offline Access Flow
+
+User opens board / saves item while online
+
+Items cached locally automatically
+
+Offline usage:
+
+View saved links, notes, PDFs
+
+Automatic sync when online
+
+8. Reminders & Notifications
+
+Set reminder on item
+
+Notification triggers:
+
+In-app alert (badge/toast)
+
+Optional email push
+
+Snooze or mark done
+
+9. AI Assistance (Premium)
+
+Auto-tagging for links, notes, PDFs
+
+Recommendations for organizing boards based on saved content
+
+10. Settings / Profile Flow
+
+Edit profile info
+
+Manage boards / tags
+
+Manage premium subscription (if any)
+
+Change theme or fonts
+
+11. Logout / Exit
+
+Logout → return to login screen
+
+Ensure local cache syncs with cloud before logout

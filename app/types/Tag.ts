@@ -1,0 +1,12 @@
+export type Tag =
+  | "tech"
+  | "ai"
+  | "dev"
+  | "design"
+  | "work"
+  | "important"
+  | "gaming"
+  | "study"
+  | "improvement"
+  | "tricks"
+  | "tips"

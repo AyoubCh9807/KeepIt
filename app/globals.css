@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+/*:root {
+ --color-primary: #139A43;
+ --color-opposite: #9A136B;
+ --color-complement: #9A8613;
+ --color-analogue-1: #139A86;
+ --color-analogue-2: #279A13;
+ --color-triangular-2: #42139A;
+ --color-triangular-3: #9A4213;
+ --color-single-hue-2: #2EE56E;
+ --color-single-hue-3: #08401B;
+}*/
+
+/* =========================
+   TAILWIND THEME BRIDGE
+   ========================= */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* =========================
+   GLOBAL STYLES
+   ========================= */
+body {
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  /* ---------------- Primary Colors ---------------- */
+  --color-primary: #1ce372;
+  --color-primary-hover: #17b85c;
+  --color-primary-active: #0e6f33;
+
+  --color-secondary: #9a136b;
+  --color-secondary-hover: #b53b92;
+  --color-secondary-active: #7a0e54;
+
+  --color-accent: #9a8613;
+  --color-accent-hover: #b5a435;
+  --color-accent-active: #7a690f;
+
+  /* ---------------- Neutral / Backgrounds ---------------- */
+  --color-background-light: #f6f8f7;
+  --color-bg: #111814;
+  --color-surface: #1e1e1e;
+  --color-surface-dark: #1c2620;
+  --color-muted: #5a5a5a;
+  --color-disabled: #2a2a2a;
+  --color-border-dark: #29382f;
+  --color-input-border: #3c5346;
+
+  /* ---------------- Text Colors ---------------- */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #9db8a9;
+  --color-text-inverse: #111814;
+
+  /* ---------------- Analogue / Support Colors ---------------- */
+  --color-info: #139a86;
+  --color-info-hover: #1bc1a1;
+
+  --color-success: #2ee56e;
+  --color-success-hover: #4af388;
+
+  --color-warning: #9a8613;
+  --color-warning-hover: #b5a435;
+
+  --color-error: #9a4213;
+  --color-error-hover: #b55c35;
+
+  /* ---------------- Triadic / Interactive Colors ---------------- */
+  --color-highlight-1: #42139a;
+  --color-highlight-1-hover: #5a2bbf;
+  --color-highlight-2: #279a13;
+  --color-highlight-2-hover: #3eb42e;
+
+  /* ---------------- UI Elements ---------------- */
+  --color-button-bg: var(--color-primary);
+  --color-button-hover: var(--color-primary-hover);
+  --color-button-active: var(--color-primary-active);
+  --color-button-text: var(--color-text-inverse);
+
+  --color-input-bg: #111814;
+  --color-input-border-focus: var(--color-primary);
+  --color-input-text: var(--color-text-primary);
+  --color-input-placeholder: #888888;
+
+  --color-card-bg: var(--color-surface);
+  --color-card-border: var(--color-border-dark);
+
+  --color-checkbox-bg: #1c2620;
+  --color-checkbox-border: var(--color-border-dark);
+  --color-checkbox-checked: var(--color-primary);
+
+  --color-tooltip-bg: #222222;
+  --color-tooltip-text: #ffffff;
+
+  /* ---------------- Shadows ---------------- */
+  --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.5);
+  --shadow-large: 0 10px 20px rgba(0, 0, 0, 0.6);
+
+  /* ---------------- Borders ---------------- */
+  --border-default: 1px solid var(--color-border-dark);
+  --border-focus: 1px solid var(--color-primary);
+
+  /* ---------------- Gradients / Extras ---------------- */
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
+  --gradient-secondary: linear-gradient(
+    135deg,
+    var(--color-secondary),
+    var(--color-highlight-1)
+  );
+  --gradient-hero: linear-gradient(
+    135deg,
+    rgba(19, 154, 67, 0.2) 0%,
+    rgba(154, 134, 19, 0.2) 100%
+  );
+
+  /* ---------------- Fonts ---------------- */
+  --font-display: "Inter", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #111814;
+}
+::-webkit-scrollbar-thumb {
+  background: #29382f;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3c5346;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #139a43;
+}
