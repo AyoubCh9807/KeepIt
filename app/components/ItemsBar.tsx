@@ -1,5 +1,9 @@
+"use client";
+interface ItemsBarProps {
+  onPopupToggle: () => void;
+}
 
-export const ItemsBar = () => {
+export const ItemsBar = ({ onPopupToggle }: ItemsBarProps) => {
   return (
     <header className="h-16 border-b border-(--color-border-dark) bg-(--color-surface-dark)/80 backdrop-blur-md flex items-center justify-between px-4 sm:px-6 lg:px-8 z-10 sticky top-0">
       <div className="flex items-center gap-4">
@@ -38,7 +42,9 @@ export const ItemsBar = () => {
         </button>
         <button className="flex items-center gap-2 h-9 px-4 bg-(--color-primary) hover:bg-green-600 text-white text-sm font-semibold rounded-lg shadow-sm shadow-(--color-primary)/20 transition-all active:scale-95">
           <span className="material-symbols-outlined text-[20px]">add</span>
-          <span className="hidden sm:inline">Add Item</span>
+          <span className="hidden sm:inline" onClick={onPopupToggle}>
+            Add Item
+          </span>
         </button>
       </div>
     </header>

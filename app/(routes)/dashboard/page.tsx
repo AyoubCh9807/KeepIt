@@ -1,19 +1,27 @@
+"use client";
+
 import { LinkCard } from "@/app/components/LinkCard";
 import { NoteCard } from "@/app/components/NoteCard";
 import { PDFCard } from "@/app/components/PDFCard";
 import { DraftCard } from "@/app/components/DraftCard";
 
+import { CreateNewCard } from "@/app/components/ui/CreateNewCard";
+
 import { ItemsBar } from "@/app/components/ItemsBar";
 import { ItemFilterBar } from "@/app/components/ItemFilterBar";
 import { Sidebar } from "@/app/components/Sidebar";
+import { useState } from "react";
+import { CardCreationPopup } from "@/app/components/CardCreationPopup";
 
 export default function Dashboard() {
+  const [creatingNewItem, setCreatingNewItem] = useState<boolean>(false);
+
   return (
-    <div className="flex h-screen overflow-hidden font-sans">
+    <div className="flex h-screen overflow-hidden font-sans relative">
       <Sidebar />
 
       <main className="flex-1 flex flex-col bg-(--color-surface-dark) min-w-0">
-        <ItemsBar />
+        <ItemsBar onPopupToggle={() => setCreatingNewItem(true)} />
         <ItemFilterBar />
         <div className="flex-1 overflow-y-auto custom-scrollbar p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-20">
@@ -44,7 +52,6 @@ export default function Dashboard() {
               tags={["design", "branding"]}
               date="Oct 24"
             />
-
 
             <div className="group relative flex flex-col bg-(--color-bg) border border-(--color-border-dark) rounded-xl p-0 overflow-hidden hover:border-(--color-primary)/50 hover:-translate-y-1 transition-all duration-200 cursor-pointer">
               <div className="h-32 bg-gray-800 w-full relative">
@@ -113,19 +120,19 @@ export default function Dashboard() {
                 <span className="text-xs text-gray-500">Oct 18</span>
               </div>
             </div>
-            <div className="group flex flex-col items-center justify-center bg-transparent border-2 border-dashed border-(--color-border-dark) rounded-xl p-5 hover:border-(--color-primary)/50 hover:bg-white/5 transition-all duration-200 cursor-pointer min-h-55">
-              <div className="size-12 rounded-full bg-(--color-bg) border border-(--color-border-dark) flex items-center justify-center text-gray-400 group-hover:text-(--color-primary) group-hover:scale-110 transition-all mb-3">
-                <span className="material-symbols-outlined text-[24px]">
-                  add
-                </span>
-              </div>
-              <span className="text-sm font-medium text-gray-400 group-hover:text-white">
-                Create New Item
-              </span>
-            </div>
+
+            <CreateNewCard
+              onClick={() => setCreatingNewItem(!creatingNewItem)}
+            />
           </div>
         </div>
       </main>
+
+      {creatingNewItem && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
+          <CardCreationPopup onClose={() => setCreatingNewItem(false)} />
+        </div>
+      )}
     </div>
   );
 }

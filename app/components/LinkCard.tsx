@@ -3,7 +3,9 @@ import { RegularCardProps } from "../types/RegularCardProps";
 
 export const LinkCard = ({ title, description, tags, date }: RegularCardProps) => {
   return (
-    <div className="group relative flex flex-col bg-[var(--color-bg)] border border-[var(--color-border-dark)] rounded-xl p-5 hover:border-[var(--color-primary)]/50 hover:-translate-y-1 transition-all duration-200 cursor-pointer shadow-lg shadow-black/20">
+    <div className="group relative flex flex-col bg-(--color-bg) border 
+    border-(--color-border-dark) rounded-xl p-5 
+    hover:border-(--color-primary)/50 hover:-translate-y-1 transition-all duration-200 cursor-pointer shadow-lg shadow-black/20">
       
       {/* Icon + Title */}
       <div className="mb-4">

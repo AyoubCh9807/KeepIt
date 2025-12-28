@@ -12,8 +12,8 @@ export const NoteCard = ({ title, description, tags, date }: RegularCardProps) =
           className="
             flex items-center justify-center w-8 h-8
             rounded-full 
-            bg-[var(--color-bg)]/20
-            text-[var(--color-secondary)] 
+            bg-(--color-bg)/20
+            text-(--color-secondary) 
             hover:text-(--color-accent-hover)
             opacity-0 group-hover:opacity-100
             transition-all duration-200 transform hover:scale-110

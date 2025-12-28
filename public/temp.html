@@ -1,846 +1,170 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>KeepIt Board View</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#139A43",
-              secondary: "#9A8613",
-              "background-light": "#f6f8f7",
-              "background-dark": "#121212",
-              "card-dark": "#1E1E1E",
-              "border-dark": "#2A2A2A",
-              "sidebar-dark": "#0e0e0e",
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KeepIt Add Item Type</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#149f50",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#112118",
+                        "surface-dark": "#1E1E1E", // User requested specific surface color
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
             },
-            fontFamily: {
-              display: ["Inter", "sans-serif"],
-            },
-            backgroundImage: {
-              "hero-gradient":
-                "linear-gradient(135deg, rgba(19, 154, 67, 0.2) 0%, rgba(154, 134, 19, 0.2) 100%)",
-            },
-            borderRadius: {
-              DEFAULT: "0.5rem",
-              lg: "1rem",
-              xl: "1.5rem",
-              full: "9999px",
-            },
-          },
-        },
-      };
+        }
     </script>
-    <style>
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-      }
-      .custom-scrollbar::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #2a2a2a;
-        border-radius: 3px;
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #139a43;
-      }
+<style>
+        /* Custom scrollbar for cleanliness */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
     </style>
-  </head>
-  <body
-    class="font-display bg-background-dark text-white antialiased h-screen flex overflow-hidden"
-  >
-    <aside
-      class="w-64 bg-sidebar-dark border-r border-border-dark flex flex-col flex-shrink-0 z-20"
-    >
-      <div
-        class="h-16 flex items-center px-6 border-b border-border-dark bg-[#0e0e0e]"
-      >
-        <div class="flex items-center gap-2">
-          <div
-            class="flex size-8 items-center justify-center rounded-lg bg-primary/20 text-primary"
-          >
-            <span class="material-symbols-outlined">bookmarks</span>
-          </div>
-          <span class="text-lg font-bold tracking-tight text-white"
-            >KeepIt</span
-          >
-        </div>
-      </div>
-      <nav class="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-6">
-        <div>
-          <h3
-            class="px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2"
-          >
-            Library
-          </h3>
-          <div class="space-y-1">
-            <a
-              class="flex items-center gap-3 px-2 py-2 text-sm font-medium rounded-lg bg-primary/10 text-primary"
-              href="#"
-            >
-              <span class="material-symbols-outlined text-[20px]"
-                >dashboard</span
-              >
-              All Boards
-            </a>
-            <a
-              class="flex items-center gap-3 px-2 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-              href="#"
-            >
-              <span class="material-symbols-outlined text-[20px]"
-                >schedule</span
-              >
-              Recent
-            </a>
-            <a
-              class="flex items-center gap-3 px-2 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-              href="#"
-            >
-              <span class="material-symbols-outlined text-[20px]"
-                >favorite</span
-              >
-              Favorites
-            </a>
-          </div>
-        </div>
-        <div>
-          <div class="flex items-center justify-between px-2 mb-2">
-            <h3
-              class="text-xs font-semibold text-gray-500 uppercase tracking-wider"
-            >
-              My Boards
-            </h3>
-            <button class="text-gray-500 hover:text-primary transition-colors">
-              <span class="material-symbols-outlined text-[16px]">add</span>
-            </button>
-          </div>
-          <div class="space-y-1">
-            <a
-              class="flex items-center gap-3 px-2 py-2 text-sm font-medium text-white bg-card-dark border border-border-dark rounded-lg shadow-sm"
-              href="#"
-            >
-              <span class="w-2 h-2 rounded-full bg-secondary"></span>
-              Productivity Tools
-            </a>
-            <a
-              class="flex items-center gap-3 px-2 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-              href="#"
-            >
-              <span class="w-2 h-2 rounded-full bg-purple-500"></span>
-              Design Inspiration
-            </a>
-            <a
-              class="flex items-center gap-3 px-2 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-              href="#"
-            >
-              <span class="w-2 h-2 rounded-full bg-blue-500"></span>
-              Reading List
-            </a>
-            <a
-              class="flex items-center gap-3 px-2 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-              href="#"
-            >
-              <span class="w-2 h-2 rounded-full bg-red-500"></span>
-              Recipes
-            </a>
-          </div>
-        </div>
-        <div>
-          <h3
-            class="px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2"
-          >
-            Tags
-          </h3>
-          <div class="flex flex-wrap gap-2 px-2">
-            <span
-              class="px-2 py-1 text-xs rounded-md bg-white/5 text-gray-400 border border-white/5 hover:border-primary/50 cursor-pointer transition-colors"
-              >#work</span
-            >
-            <span
-              class="px-2 py-1 text-xs rounded-md bg-white/5 text-gray-400 border border-white/5 hover:border-primary/50 cursor-pointer transition-colors"
-              >#ideas</span
-            >
-            <span
-              class="px-2 py-1 text-xs rounded-md bg-white/5 text-gray-400 border border-white/5 hover:border-primary/50 cursor-pointer transition-colors"
-              >#important</span
-            >
-          </div>
-        </div>
-      </nav>
-      <div class="p-4 border-t border-border-dark">
-        <button
-          class="flex items-center gap-3 w-full p-2 rounded-lg hover:bg-white/5 transition-colors"
-        >
-          <div
-            class="h-8 w-8 rounded-full bg-gray-700 bg-cover border border-border-dark"
-            style="
-              background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQAo3D4FkKPSGIvxHMIzoGAk2brOBZBZAmoNKfH_SQm48ET8TkGsqd1hSqOeNF0BjoWrWGTSV5kbjz6-J1aQHg7AHqZRG45PdoEfR292lf97_30v7gQOuXJGjSHIVHlVi4bfYfEUrlvaqiE8iJ5UiM7lG1HpC9JrZyCG8oCMYcOMuw8A_se7SIIE0nWtUXeDGde80902pNnMgEyOkC2Tbl-AOgXjqrJBydGJJOanKZK7SHn9xReai1b66Z8BKtxNPAQ4vp_3yuNg');
-            "
-          ></div>
-          <div class="flex-1 text-left">
-            <p class="text-sm font-medium text-white">Alex Morgan</p>
-            <p class="text-xs text-gray-500">Free Plan</p>
-          </div>
-          <span class="material-symbols-outlined text-gray-500 text-[20px]"
-            >settings</span
-          >
-        </button>
-      </div>
-    </aside>
-    <main class="flex-1 flex flex-col bg-background-dark min-w-0">
-      <header
-        class="h-16 border-b border-border-dark bg-background-dark/80 backdrop-blur-md flex items-center justify-between px-4 sm:px-6 lg:px-8 z-10 sticky top-0"
-      >
-        <div class="flex items-center gap-4">
-          <div class="flex flex-col">
-            <div class="flex items-center gap-2 text-xs text-gray-500">
-              <span>My Boards</span>
-              <span class="material-symbols-outlined text-[10px]"
-                >chevron_right</span
-              >
-              <span>Personal</span>
-            </div>
-            <h1 class="text-xl font-bold text-white flex items-center gap-2">
-              Productivity Tools
-              <span
-                class="material-symbols-outlined text-gray-500 text-[18px] cursor-pointer hover:text-white"
-                >edit</span
-              >
-            </h1>
-          </div>
-        </div>
-        <div class="flex items-center gap-4">
-          <div class="hidden md:flex relative group">
-            <span
-              class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-primary transition-colors"
-            >
-              <span class="material-symbols-outlined text-[20px]">search</span>
-            </span>
-            <input
-              class="h-9 w-64 bg-card-dark border border-border-dark rounded-lg pl-10 pr-4 text-sm text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-              placeholder="Search in board..."
-              type="text"
-            />
-          </div>
-          <div class="h-6 w-px bg-border-dark hidden md:block"></div>
-          <button
-            class="flex items-center justify-center p-2 text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors"
-          >
-            <span class="material-symbols-outlined">notifications</span>
-          </button>
-          <button
-            class="flex items-center gap-2 h-9 px-4 bg-primary hover:bg-green-600 text-white text-sm font-semibold rounded-lg shadow-sm shadow-primary/20 transition-all active:scale-95"
-          >
-            <span class="material-symbols-outlined text-[20px]">add</span>
-            <span class="hidden sm:inline">Add Item</span>
-          </button>
-        </div>
-      </header>
-      <div
-        class="flex flex-col sm:flex-row gap-4 justify-between items-center px-6 py-4 border-b border-border-dark bg-background-dark"
-      >
-        <div
-          class="flex items-center gap-2 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 no-scrollbar"
-        >
-          <span class="text-sm text-gray-500 mr-2 font-medium">Filter:</span>
-          <button
-            class="flex items-center gap-2 px-3 py-1.5 text-sm bg-card-dark border border-border-dark rounded-md text-gray-300 hover:text-white hover:border-gray-500 transition-colors"
-          >
-            <span class="material-symbols-outlined text-[18px]">category</span>
-            Type
-            <span class="material-symbols-outlined text-[16px] text-gray-500"
-              >expand_more</span
-            >
-          </button>
-          <button
-            class="flex items-center gap-2 px-3 py-1.5 text-sm bg-card-dark border border-border-dark rounded-md text-gray-300 hover:text-white hover:border-gray-500 transition-colors"
-          >
-            <span class="material-symbols-outlined text-[18px]">label</span>
-            Tag
-            <span class="material-symbols-outlined text-[16px] text-gray-500"
-              >expand_more</span
-            >
-          </button>
-          <button
-            class="flex items-center gap-2 px-3 py-1.5 text-sm bg-card-dark border border-border-dark rounded-md text-gray-300 hover:text-white hover:border-gray-500 transition-colors"
-          >
-            <span class="material-symbols-outlined text-[18px]"
-              >calendar_month</span
-            >
-            Date
-            <span class="material-symbols-outlined text-[16px] text-gray-500"
-              >expand_more</span
-            >
-          </button>
-          <div class="h-6 w-px bg-border-dark mx-2"></div>
-          <button class="text-xs text-primary hover:text-green-400 font-medium">
-            Clear all
-          </button>
-        </div>
-        <div
-          class="flex items-center gap-1 bg-card-dark border border-border-dark rounded-lg p-1"
-        >
-          <button class="p-1.5 rounded bg-white/10 text-white shadow-sm">
-            <span class="material-symbols-outlined text-[20px]">grid_view</span>
-          </button>
-          <button
-            class="p-1.5 rounded text-gray-500 hover:text-white hover:bg-white/5 transition-colors"
-          >
-            <span class="material-symbols-outlined text-[20px]">view_list</span>
-          </button>
-        </div>
-      </div>
-      <div class="flex-1 overflow-y-auto custom-scrollbar p-6">
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-20"
-        >
-          <div
-            class="relative group flex flex-col items-center justify-center bg-card-dark border-2 border-dashed border-border-dark rounded-xl p-6 hover:border-primary/50 hover:bg-white/5 transition-all duration-200 cursor-pointer min-h-[220px]"
-          >
-            <div
-              class="flex flex-col items-center gap-4 opacity-30 group-hover:opacity-100 transition-opacity"
-            >
-              <div
-                class="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all shadow-lg shadow-primary/10"
-              >
-                <span class="material-symbols-outlined text-4xl">add</span>
-              </div>
-              <span
-                class="font-semibold text-gray-400 group-hover:text-white transition-colors"
-                >Add Card</span
-              >
-            </div>
-            <div
-              class="hidden absolute z-30 w-56 bg-[#1E1E1E] border border-border-dark rounded-xl shadow-2xl shadow-black/80 overflow-hidden animate-in fade-in zoom-in duration-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            >
-              <div class="p-1.5">
-                <div
-                  class="px-3 py-2 text-[10px] font-bold text-gray-500 uppercase tracking-wider"
-                >
-                  Create New
-                </div>
-                <button
-                  class="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors text-left group/item"
-                >
-                  <div
-                    class="flex items-center justify-center size-8 rounded bg-blue-500/10 text-blue-400 group-hover/item:bg-blue-500 group-hover/item:text-white transition-colors"
-                  >
-                    <span class="material-symbols-outlined text-[18px]"
-                      >link</span
-                    >
-                  </div>
-                  <div class="flex flex-col">
-                    <span class="font-medium">Link</span>
-                  </div>
-                </button>
-                <button
-                  class="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors text-left group/item"
-                >
-                  <div
-                    class="flex items-center justify-center size-8 rounded bg-yellow-500/10 text-yellow-500 group-hover/item:bg-yellow-500 group-hover/item:text-white transition-colors"
-                  >
-                    <span class="material-symbols-outlined text-[18px]"
-                      >description</span
-                    >
-                  </div>
-                  <div class="flex flex-col">
-                    <span class="font-medium">Note</span>
-                  </div>
-                </button>
-                <button
-                  class="w-full flex items-center gap-3 px-3 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors text-left group/item"
-                >
-                  <div
-                    class="flex items-center justify-center size-8 rounded bg-red-500/10 text-red-500 group-hover/item:bg-red-500 group-hover/item:text-white transition-colors"
-                  >
-                    <span class="material-symbols-outlined text-[18px]"
-                      >upload_file</span
-                    >
-                  </div>
-                  <div class="flex flex-col">
-                    <span class="font-medium">Document</span>
-                  </div>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div
-            class="group relative flex flex-col bg-card-dark border border-border-dark rounded-xl p-5 hover:border-primary/50 hover:-translate-y-1 transition-all duration-200 cursor-pointer shadow-lg shadow-black/20"
-          >
-            <div class="absolute top-4 right-4 flex items-center gap-1">
-              <button
-                class="text-secondary hover:text-yellow-400 transition-colors"
-                title="Unpin"
-              >
-                <span class="material-symbols-outlined text-[20px] fill-1"
-                  >push_pin</span
-                >
-              </button>
-              <button
-                class="text-gray-500 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-white/10 rounded"
-              >
-                <span class="material-symbols-outlined text-[20px]"
-                  >more_horiz</span
-                >
-              </button>
-            </div>
-            <div class="mb-4">
-              <div
-                class="inline-flex items-center justify-center size-10 rounded-lg bg-primary/10 text-primary mb-3"
-              >
-                <span class="material-symbols-outlined">article</span>
-              </div>
-              <h3 class="text-lg font-bold text-white leading-tight">
-                Future of PKM
-              </h3>
-            </div>
-            <p class="text-sm text-gray-400 line-clamp-2 mb-4">
-              An in-depth analysis of how Personal Knowledge Management systems
-              are evolving with AI integration.
-            </p>
-            <div
-              class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between"
-            >
-              <div class="flex gap-2">
-                <span
-                  class="px-2 py-0.5 rounded text-[10px] font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                  >#tech</span
-                >
-                <span
-                  class="px-2 py-0.5 rounded text-[10px] font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20"
-                  >#ai</span
-                >
-              </div>
-              <span class="text-xs text-gray-500">2h ago</span>
-            </div>
-            <div
-              class="absolute inset-x-0 bottom-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-black/90 to-transparent rounded-b-xl flex justify-center gap-3 pb-4"
-            >
-              <button
-                class="p-2 bg-gray-800 rounded-full text-white hover:bg-primary hover:text-white transition-colors border border-gray-700 shadow-lg"
-                title="Open"
-              >
-                <span class="material-symbols-outlined text-[18px]"
-                  >open_in_new</span
-                >
-              </button>
-              <button
-                class="p-2 bg-gray-800 rounded-full text-white hover:bg-blue-600 transition-colors border border-gray-700 shadow-lg"
-                title="Edit"
-              >
-                <span class="material-symbols-outlined text-[18px]">edit</span>
-              </button>
-              <button
-                class="p-2 bg-gray-800 rounded-full text-white hover:bg-red-600 transition-colors border border-gray-700 shadow-lg"
-                title="Delete"
-              >
-                <span class="material-symbols-outlined text-[18px]"
-                  >delete</span
-                >
-              </button>
-            </div>
-          </div>
-          <div
-            class="group relative flex flex-col bg-card-dark border border-border-dark rounded-xl p-5 hover:border-gray-500 hover:-translate-y-1 transition-all duration-200 cursor-pointer"
-          >
-            <div class="absolute top-4 right-4 flex items-center gap-1">
-              <button
-                class="text-gray-600 hover:text-secondary opacity-0 group-hover:opacity-100 transition-all"
-                title="Pin"
-              >
-                <span class="material-symbols-outlined text-[20px]"
-                  >push_pin</span
-                >
-              </button>
-              <button
-                class="text-gray-500 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-white/10 rounded"
-              >
-                <span class="material-symbols-outlined text-[20px]"
-                  >more_horiz</span
-                >
-              </button>
-            </div>
-            <div class="mb-4">
-              <div
-                class="inline-flex items-center justify-center size-10 rounded-lg bg-orange-500/10 text-orange-500 mb-3"
-              >
-                <span class="material-symbols-outlined">description</span>
-              </div>
-              <h3 class="text-lg font-bold text-white leading-tight">
-                Q3 Goals Draft
-              </h3>
-            </div>
-            <p
-              class="text-sm text-gray-400 line-clamp-3 mb-4 font-serif italic"
-            >
-              1. Launch the new board view.<br />2. Improve mobile
-              responsiveness.<br />3. User testing...
-            </p>
-            <div
-              class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between"
-            >
-              <div class="flex gap-2">
-                <span
-                  class="px-2 py-0.5 rounded text-[10px] font-medium bg-orange-500/10 text-orange-400 border border-orange-500/20"
-                  >#work</span
-                >
-              </div>
-              <span class="text-xs text-gray-500">Yesterday</span>
-            </div>
-            <div
-              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center gap-2 backdrop-blur-[1px]"
-            >
-              <button
-                class="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full font-bold text-sm hover:scale-105 transition-transform"
-              >
-                Open Note
-              </button>
-            </div>
-          </div>
-          <div
-            class="group relative flex flex-col bg-card-dark border border-border-dark rounded-xl p-5 hover:border-gray-500 hover:-translate-y-1 transition-all duration-200 cursor-pointer"
-          >
-            <div class="absolute top-4 right-4 flex items-center gap-1">
-              <button
-                class="text-gray-500 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-white/10 rounded"
-              >
-                <span class="material-symbols-outlined text-[20px]"
-                  >more_horiz</span
-                >
-              </button>
-            </div>
-            <div class="mb-4">
-              <div
-                class="inline-flex items-center justify-center size-10 rounded-lg bg-red-500/10 text-red-500 mb-3"
-              >
-                <span class="material-symbols-outlined">picture_as_pdf</span>
-              </div>
-              <h3 class="text-lg font-bold text-white leading-tight">
-                Brand_Guidelines_v2.pdf
-              </h3>
-            </div>
-            <div
-              class="w-full h-24 bg-gray-800 rounded-lg mb-4 flex items-center justify-center border border-white/5 relative overflow-hidden"
-            >
-              <span class="material-symbols-outlined text-4xl text-gray-600"
-                >image</span
-              >
-              <div
-                class="absolute inset-0 bg-gradient-to-b from-transparent to-black/20"
-              ></div>
-            </div>
-            <div
-              class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between"
-            >
-              <div class="flex gap-2">
-                <span
-                  class="px-2 py-0.5 rounded text-[10px] font-medium bg-red-500/10 text-red-400 border border-red-500/20"
-                  >#design</span
-                >
-              </div>
-              <span class="text-xs text-gray-500">Oct 24</span>
-            </div>
-          </div>
-          <div
-            class="group relative flex flex-col bg-card-dark border border-border-dark rounded-xl p-0 overflow-hidden hover:border-primary/50 hover:-translate-y-1 transition-all duration-200 cursor-pointer"
-          >
-            <div class="h-32 bg-gray-800 w-full relative">
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gray-700"
-              >
-                <span class="material-symbols-outlined text-gray-500 text-4xl"
-                  >smart_display</span
-                >
-              </div>
-              <div
-                class="absolute bottom-2 right-2 bg-black/80 px-1.5 py-0.5 rounded text-[10px] font-bold text-white"
-              >
-                12:45
-              </div>
-            </div>
-            <div class="p-5 flex flex-col flex-1">
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-lg font-bold text-white leading-tight">
-                  Advanced CSS Grid Layouts
-                </h3>
-                <button
-                  class="text-gray-500 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity -mr-2 -mt-2 p-1"
-                >
-                  <span class="material-symbols-outlined text-[20px]"
-                    >more_vert</span
-                  >
-                </button>
-              </div>
-              <p class="text-sm text-gray-400 line-clamp-2 mb-4">
-                Learn how to build complex dashboard layouts using CSS Grid and
-                Flexbox.
-              </p>
-              <div class="mt-auto flex items-center justify-between">
-                <div class="flex gap-2">
-                  <span
-                    class="px-2 py-0.5 rounded text-[10px] font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                    >#dev</span
-                  >
-                </div>
-                <span class="text-xs text-gray-500">Oct 20</span>
-              </div>
-            </div>
-          </div>
-          <div
-            class="flex flex-col bg-card-dark border-2 border-primary/50 rounded-xl p-5 shadow-2xl shadow-primary/10 transition-all duration-200 relative group min-h-[220px]"
-          >
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center gap-2">
-                <div
-                  class="size-6 rounded bg-primary/20 flex items-center justify-center text-primary"
-                >
-                  <span class="material-symbols-outlined text-[16px]"
-                    >add_link</span
-                  >
-                </div>
-                <span
-                  class="text-sm font-bold text-white uppercase tracking-wider"
-                  >Add Link</span
-                >
-              </div>
-              <button
-                class="text-gray-500 hover:text-white transition-colors p-1 hover:bg-white/10 rounded"
-                title="Close"
-              >
-                <span class="material-symbols-outlined text-[18px]">close</span>
-              </button>
-            </div>
-            <div class="flex-1 flex flex-col gap-3">
-              <div class="relative group/input">
-                <div
-                  class="absolute left-3 top-2.5 text-gray-500 group-focus-within/input:text-primary transition-colors"
-                >
-                  <span class="material-symbols-outlined text-[18px]"
-                    >link</span
-                  >
-                </div>
-                <input
-                  autofocus=""
-                  class="w-full bg-background-dark border border-border-dark rounded-lg py-2 pl-9 pr-3 text-sm text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                  placeholder="Paste URL here..."
-                  type="text"
-                />
-              </div>
-              <textarea
-                class="w-full flex-1 bg-background-dark border border-border-dark rounded-lg p-3 text-sm text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none custom-scrollbar min-h-[60px]"
-                placeholder="Add a description..."
-              ></textarea>
-              <div class="flex flex-wrap gap-2 items-center min-h-[28px] mt-1">
-                <span
-                  class="px-2 py-1 rounded text-[11px] font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center gap-1 group/tag cursor-pointer hover:bg-blue-500/20 transition-colors"
-                >
-                  #ai
-                  <button class="hover:text-white flex items-center">
-                    <span class="material-symbols-outlined text-[12px]"
-                      >close</span
-                    >
-                  </button>
-                </span>
-                <span
-                  class="px-2 py-1 rounded text-[11px] font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20 flex items-center gap-1 group/tag cursor-pointer hover:bg-purple-500/20 transition-colors"
-                >
-                  #dev
-                  <button class="hover:text-white flex items-center">
-                    <span class="material-symbols-outlined text-[12px]"
-                      >close</span
-                    >
-                  </button>
-                </span>
-                <input
-                  class="bg-transparent text-xs text-white placeholder-gray-600 focus:outline-none min-w-[60px] border-b border-transparent focus:border-primary pb-0.5 transition-colors"
-                  placeholder="+ Tag"
-                  type="text"
-                />
-              </div>
-            </div>
-            <div
-              class="mt-4 pt-3 border-t border-white/5 flex items-center justify-end gap-2"
-            >
-              <button
-                class="text-xs font-medium text-gray-400 hover:text-white px-3 py-1.5 transition-colors"
-              >
-                Cancel
-              </button>
-              <button
-                class="px-4 py-1.5 text-xs font-bold text-white bg-primary hover:bg-green-600 rounded-lg shadow-sm shadow-primary/20 transition-all active:scale-95 flex items-center gap-1"
-              >
-                <span class="material-symbols-outlined text-[16px]">check</span>
-                Save
-              </button>
-            </div>
-          </div>
-          <div
-            class="group relative flex flex-col bg-card-dark border border-border-dark rounded-xl p-5 hover:border-gray-500 hover:-translate-y-1 transition-all duration-200 cursor-pointer"
-          >
-            <div class="absolute top-4 right-4 flex items-center gap-1">
-              <button
-                class="text-gray-500 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-white/10 rounded"
-              >
-                <span class="material-symbols-outlined text-[20px]"
-                  >more_horiz</span
-                >
-              </button>
-            </div>
-            <div class="mb-4">
-              <div
-                class="inline-flex items-center justify-center size-10 rounded-lg bg-teal-500/10 text-teal-500 mb-3"
-              >
-                <span class="material-symbols-outlined">link</span>
-              </div>
-              <h3 class="text-lg font-bold text-white leading-tight">
-                Tailwind CSS Documentation
-              </h3>
-            </div>
-            <p class="text-sm text-gray-400 line-clamp-2 mb-4">
-              Rapidly build modern websites without ever leaving your HTML.
-            </p>
-            <div
-              class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between"
-            >
-              <div class="flex gap-2">
-                <span
-                  class="px-2 py-0.5 rounded text-[10px] font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                  >#dev</span
-                >
-                <span
-                  class="px-2 py-0.5 rounded text-[10px] font-medium bg-teal-500/10 text-teal-400 border border-teal-500/20"
-                  >#ref</span
-                >
-              </div>
-              <span class="text-xs text-gray-500">Oct 18</span>
-            </div>
-          </div>
-          <div
-            class="group relative flex flex-col bg-card-dark border border-border-dark rounded-xl p-5 hover:border-secondary/50 hover:-translate-y-1 transition-all duration-200 cursor-pointer shadow-lg shadow-black/20"
-          >
-            <div class="absolute top-4 right-4 flex items-center gap-1">
-              <button
-                class="text-gray-500 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-white/10 rounded"
-              >
-                <span class="material-symbols-outlined text-[20px]"
-                  >more_horiz</span
-                >
-              </button>
-            </div>
-            <div class="mb-4">
-              <div
-                class="inline-flex items-center justify-center size-10 rounded-lg bg-secondary/10 text-secondary mb-3"
-              >
-                <span class="material-symbols-outlined">public</span>
-              </div>
-              <h3 class="text-lg font-bold text-white leading-tight">
-                The Art of Focus
-              </h3>
-            </div>
-            <p class="text-sm text-gray-400 line-clamp-2 mb-4">
-              Mastering attention in a distracted world. Techniques and insights
-              for deep work and sustainable productivity.
-            </p>
-            <div
-              class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between"
-            >
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="px-2 py-0.5 rounded text-[10px] font-medium bg-secondary/10 text-secondary border border-secondary/20 hover:bg-secondary/20 cursor-pointer transition-colors"
-                  >#productivity</span
-                >
-                <span
-                  class="px-2 py-0.5 rounded text-[10px] font-medium bg-secondary/10 text-secondary border border-secondary/20 hover:bg-secondary/20 cursor-pointer transition-colors"
-                  >#webdev</span
-                >
-                <span
-                  class="px-2 py-0.5 rounded text-[10px] font-medium bg-secondary/10 text-secondary border border-secondary/20 hover:bg-secondary/20 cursor-pointer transition-colors"
-                  >#inspiration</span
-                >
-              </div>
-              <span class="text-xs text-gray-500">Just now</span>
-            </div>
-          </div>
-          <div
-            class="group relative flex flex-col bg-card-dark border border-border-dark rounded-xl p-5 hover:border-gray-500 hover:-translate-y-1 transition-all duration-200 cursor-pointer"
-          >
-            <div class="absolute top-4 right-4 flex items-center gap-1">
-              <button
-                class="text-gray-500 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-white/10 rounded"
-              >
-                <span class="material-symbols-outlined text-[20px]"
-                  >more_horiz</span
-                >
-              </button>
-            </div>
-            <div class="mb-4">
-              <div class="flex justify-between items-start mb-3">
-                <div
-                  class="inline-flex items-center justify-center size-10 rounded-lg bg-pink-500/10 text-pink-500"
-                >
-                  <span class="material-symbols-outlined">link</span>
-                </div>
-                <button
-                  class="text-gray-500 hover:text-white transition-colors p-1"
-                  title="Visit Source"
-                >
-                  <span class="material-symbols-outlined text-[20px]"
-                    >open_in_new</span
-                  >
-                </button>
-              </div>
-              <h3 class="text-lg font-bold text-white leading-tight">
-                Modern CSS Resets
-              </h3>
-              <p class="text-xs text-gray-500 mt-1">
-                Created by Josh W. Comeau
-              </p>
-            </div>
-            <p class="text-sm text-gray-400 line-clamp-2 mb-4">
-              A comprehensive guide to resetting your CSS for consistent styling
-              across different browsers.
-            </p>
-            <a
-              class="flex items-center justify-center w-full py-2 mb-4 text-sm font-semibold text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors"
-              href="/link/modern-css-resets"
-            >
-              View Details
-            </a>
-            <div
-              class="mt-auto pt-4 border-t border-white/5 flex items-center justify-between"
-            >
-              <div class="flex gap-2">
-                <span
-                  class="px-2 py-0.5 rounded text-[10px] font-medium bg-pink-500/10 text-pink-400 border border-pink-500/20"
-                  >#frontend</span
-                >
-                <span
-                  class="px-2 py-0.5 rounded text-[10px] font-medium bg-secondary/10 text-secondary border border-secondary/20"
-                  >#css</span
-                >
-              </div>
-              <span class="text-xs text-gray-500">Nov 01</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </body>
-</html>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col overflow-hidden relative selection:bg-primary/30 selection:text-white">
+<!-- Background Simulation of "Board View" -->
+<!-- This div acts as the app behind the modal -->
+<div aria-hidden="true" class="absolute inset-0 z-0 flex flex-col p-6 gap-6 opacity-30 pointer-events-none select-none overflow-hidden">
+<header class="flex justify-between items-center mb-4">
+<div class="h-8 w-32 bg-gray-300 dark:bg-gray-700 rounded-lg"></div>
+<div class="flex gap-4">
+<div class="h-10 w-10 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+<div class="h-10 w-24 rounded-lg bg-gray-300 dark:bg-gray-700"></div>
+</div>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="h-64 rounded-xl bg-gray-200 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700"></div>
+<div class="h-64 rounded-xl bg-gray-200 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700"></div>
+<div class="h-64 rounded-xl bg-gray-200 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700"></div>
+</div>
+</div>
+<!-- Modal Overlay -->
+<div class="relative z-50 flex h-full w-full grow items-center justify-center p-4 backdrop-blur-sm bg-black/40 transition-all duration-300">
+<!-- Modal Container -->
+<div class="flex flex-col w-full max-w-[480px] bg-surface-dark rounded-2xl shadow-2xl border border-white/10 overflow-hidden transform scale-100 transition-all">
+<!-- Header -->
+<div class="flex items-center justify-between px-6 pt-6 pb-2">
+<h3 class="text-white text-xl font-bold leading-tight tracking-tight">Add to Board</h3>
+<button class="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10 focus:outline-none focus:bg-white/10">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+</div>
+<!-- List Content -->
+<div class="flex flex-col p-4 gap-2">
+<!-- Link Option -->
+<button class="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all duration-200 w-full text-left outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1 focus:ring-offset-surface-dark">
+<div class="flex items-center justify-center rounded-lg bg-primary/20 group-hover:bg-primary group-hover:text-white text-primary shrink-0 size-12 transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">link</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<p class="text-white text-base font-medium leading-normal truncate">Link</p>
+<p class="text-[#CCCCCC] text-xs font-normal truncate">Save a URL bookmark</p>
+</div>
+<div class="shrink-0">
+<span class="inline-flex items-center justify-center rounded-lg h-7 px-3 bg-white/10 text-gray-300 text-xs font-medium border border-white/5">
+                            Cmd+1
+                        </span>
+</div>
+</button>
+<!-- Note Option -->
+<button class="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all duration-200 w-full text-left outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1 focus:ring-offset-surface-dark">
+<div class="flex items-center justify-center rounded-lg bg-primary/20 group-hover:bg-primary group-hover:text-white text-primary shrink-0 size-12 transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">sticky_note_2</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<p class="text-white text-base font-medium leading-normal truncate">Note</p>
+<p class="text-[#CCCCCC] text-xs font-normal truncate">Quick plain text note</p>
+</div>
+<div class="shrink-0">
+<span class="inline-flex items-center justify-center rounded-lg h-7 px-3 bg-white/10 text-gray-300 text-xs font-medium border border-white/5">
+                            Cmd+2
+                        </span>
+</div>
+</button>
+<!-- Draft Option -->
+<button class="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all duration-200 w-full text-left outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1 focus:ring-offset-surface-dark">
+<div class="flex items-center justify-center rounded-lg bg-primary/20 group-hover:bg-primary group-hover:text-white text-primary shrink-0 size-12 transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">edit_note</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<p class="text-white text-base font-medium leading-normal truncate">Draft</p>
+<p class="text-[#CCCCCC] text-xs font-normal truncate">Rich text editor</p>
+</div>
+<div class="shrink-0">
+<span class="inline-flex items-center justify-center rounded-lg h-7 px-3 bg-white/10 text-gray-300 text-xs font-medium border border-white/5">
+                            Cmd+3
+                        </span>
+</div>
+</button>
+<!-- PDF Option -->
+<button class="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all duration-200 w-full text-left outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1 focus:ring-offset-surface-dark">
+<div class="flex items-center justify-center rounded-lg bg-primary/20 group-hover:bg-primary group-hover:text-white text-primary shrink-0 size-12 transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">picture_as_pdf</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<p class="text-white text-base font-medium leading-normal truncate">PDF</p>
+<p class="text-[#CCCCCC] text-xs font-normal truncate">Upload a document</p>
+</div>
+<div class="shrink-0">
+<span class="inline-flex items-center justify-center rounded-lg h-7 px-3 bg-white/10 text-gray-300 text-xs font-medium border border-white/5">
+                            Cmd+4
+                        </span>
+</div>
+</button>
+<!-- Video Option (New component generated based on request) -->
+<button class="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all duration-200 w-full text-left outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1 focus:ring-offset-surface-dark">
+<div class="flex items-center justify-center rounded-lg bg-primary/20 group-hover:bg-primary group-hover:text-white text-primary shrink-0 size-12 transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">smart_display</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<p class="text-white text-base font-medium leading-normal truncate">Video</p>
+<p class="text-[#CCCCCC] text-xs font-normal truncate">Embed or upload video</p>
+</div>
+<div class="shrink-0">
+<span class="inline-flex items-center justify-center rounded-lg h-7 px-3 bg-white/10 text-gray-300 text-xs font-medium border border-white/5">
+                            Cmd+5
+                        </span>
+</div>
+</button>
+</div>
+<!-- Footer / Hint Area -->
+<div class="px-6 pb-6 pt-2">
+<div class="flex items-center justify-center gap-2">
+<p class="text-xs text-gray-500 font-medium">Use <span class="text-gray-400">↑</span> <span class="text-gray-400">↓</span> to navigate, <span class="text-gray-400">Enter</span> to select</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>
