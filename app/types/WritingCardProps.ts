@@ -1,6 +1,5 @@
-export type RegularCardProps = {
+export type WritingCardProps = {
   title: string;
-  url?: string;
   description: string;
   tags: string[];
   date: string;

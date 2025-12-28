@@ -1,170 +1,242 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>KeepIt Add Item Type</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Theme Configuration -->
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#149f50",
-                        "background-light": "#f6f8f7",
-                        "background-dark": "#112118",
-                        "surface-dark": "#1E1E1E", // User requested specific surface color
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.5rem",
-                        "lg": "1rem",
-                        "xl": "1.5rem",
-                        "2xl": "2rem",
-                        "full": "9999px"
-                    },
-                },
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KeepIt - Create Link</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#149f50",
+              "background-light": "#f6f8f7",
+              "background-dark": "#112118",
+              "surface-dark": "#1E1E1E",
+              "input-dark": "#29382f",
             },
-        }
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
     </script>
-<style>
-        /* Custom scrollbar for cleanliness */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-        }
-    </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col overflow-hidden relative selection:bg-primary/30 selection:text-white">
-<!-- Background Simulation of "Board View" -->
-<!-- This div acts as the app behind the modal -->
-<div aria-hidden="true" class="absolute inset-0 z-0 flex flex-col p-6 gap-6 opacity-30 pointer-events-none select-none overflow-hidden">
-<header class="flex justify-between items-center mb-4">
-<div class="h-8 w-32 bg-gray-300 dark:bg-gray-700 rounded-lg"></div>
-<div class="flex gap-4">
-<div class="h-10 w-10 rounded-full bg-gray-300 dark:bg-gray-700"></div>
-<div class="h-10 w-24 rounded-lg bg-gray-300 dark:bg-gray-700"></div>
-</div>
-</header>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="h-64 rounded-xl bg-gray-200 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700"></div>
-<div class="h-64 rounded-xl bg-gray-200 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700"></div>
-<div class="h-64 rounded-xl bg-gray-200 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700"></div>
-</div>
-</div>
-<!-- Modal Overlay -->
-<div class="relative z-50 flex h-full w-full grow items-center justify-center p-4 backdrop-blur-sm bg-black/40 transition-all duration-300">
-<!-- Modal Container -->
-<div class="flex flex-col w-full max-w-[480px] bg-surface-dark rounded-2xl shadow-2xl border border-white/10 overflow-hidden transform scale-100 transition-all">
-<!-- Header -->
-<div class="flex items-center justify-between px-6 pt-6 pb-2">
-<h3 class="text-white text-xl font-bold leading-tight tracking-tight">Add to Board</h3>
-<button class="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10 focus:outline-none focus:bg-white/10">
-<span class="material-symbols-outlined text-2xl">close</span>
-</button>
-</div>
-<!-- List Content -->
-<div class="flex flex-col p-4 gap-2">
-<!-- Link Option -->
-<button class="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all duration-200 w-full text-left outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1 focus:ring-offset-surface-dark">
-<div class="flex items-center justify-center rounded-lg bg-primary/20 group-hover:bg-primary group-hover:text-white text-primary shrink-0 size-12 transition-colors duration-300">
-<span class="material-symbols-outlined text-[24px]">link</span>
-</div>
-<div class="flex flex-col flex-1 min-w-0">
-<p class="text-white text-base font-medium leading-normal truncate">Link</p>
-<p class="text-[#CCCCCC] text-xs font-normal truncate">Save a URL bookmark</p>
-</div>
-<div class="shrink-0">
-<span class="inline-flex items-center justify-center rounded-lg h-7 px-3 bg-white/10 text-gray-300 text-xs font-medium border border-white/5">
-                            Cmd+1
-                        </span>
-</div>
-</button>
-<!-- Note Option -->
-<button class="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all duration-200 w-full text-left outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1 focus:ring-offset-surface-dark">
-<div class="flex items-center justify-center rounded-lg bg-primary/20 group-hover:bg-primary group-hover:text-white text-primary shrink-0 size-12 transition-colors duration-300">
-<span class="material-symbols-outlined text-[24px]">sticky_note_2</span>
-</div>
-<div class="flex flex-col flex-1 min-w-0">
-<p class="text-white text-base font-medium leading-normal truncate">Note</p>
-<p class="text-[#CCCCCC] text-xs font-normal truncate">Quick plain text note</p>
-</div>
-<div class="shrink-0">
-<span class="inline-flex items-center justify-center rounded-lg h-7 px-3 bg-white/10 text-gray-300 text-xs font-medium border border-white/5">
-                            Cmd+2
-                        </span>
-</div>
-</button>
-<!-- Draft Option -->
-<button class="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all duration-200 w-full text-left outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1 focus:ring-offset-surface-dark">
-<div class="flex items-center justify-center rounded-lg bg-primary/20 group-hover:bg-primary group-hover:text-white text-primary shrink-0 size-12 transition-colors duration-300">
-<span class="material-symbols-outlined text-[24px]">edit_note</span>
-</div>
-<div class="flex flex-col flex-1 min-w-0">
-<p class="text-white text-base font-medium leading-normal truncate">Draft</p>
-<p class="text-[#CCCCCC] text-xs font-normal truncate">Rich text editor</p>
-</div>
-<div class="shrink-0">
-<span class="inline-flex items-center justify-center rounded-lg h-7 px-3 bg-white/10 text-gray-300 text-xs font-medium border border-white/5">
-                            Cmd+3
-                        </span>
-</div>
-</button>
-<!-- PDF Option -->
-<button class="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all duration-200 w-full text-left outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1 focus:ring-offset-surface-dark">
-<div class="flex items-center justify-center rounded-lg bg-primary/20 group-hover:bg-primary group-hover:text-white text-primary shrink-0 size-12 transition-colors duration-300">
-<span class="material-symbols-outlined text-[24px]">picture_as_pdf</span>
-</div>
-<div class="flex flex-col flex-1 min-w-0">
-<p class="text-white text-base font-medium leading-normal truncate">PDF</p>
-<p class="text-[#CCCCCC] text-xs font-normal truncate">Upload a document</p>
-</div>
-<div class="shrink-0">
-<span class="inline-flex items-center justify-center rounded-lg h-7 px-3 bg-white/10 text-gray-300 text-xs font-medium border border-white/5">
-                            Cmd+4
-                        </span>
-</div>
-</button>
-<!-- Video Option (New component generated based on request) -->
-<button class="group flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all duration-200 w-full text-left outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-1 focus:ring-offset-surface-dark">
-<div class="flex items-center justify-center rounded-lg bg-primary/20 group-hover:bg-primary group-hover:text-white text-primary shrink-0 size-12 transition-colors duration-300">
-<span class="material-symbols-outlined text-[24px]">smart_display</span>
-</div>
-<div class="flex flex-col flex-1 min-w-0">
-<p class="text-white text-base font-medium leading-normal truncate">Video</p>
-<p class="text-[#CCCCCC] text-xs font-normal truncate">Embed or upload video</p>
-</div>
-<div class="shrink-0">
-<span class="inline-flex items-center justify-center rounded-lg h-7 px-3 bg-white/10 text-gray-300 text-xs font-medium border border-white/5">
-                            Cmd+5
-                        </span>
-</div>
-</button>
-</div>
-<!-- Footer / Hint Area -->
-<div class="px-6 pb-6 pt-2">
-<div class="flex items-center justify-center gap-2">
-<p class="text-xs text-gray-500 font-medium">Use <span class="text-gray-400">↑</span> <span class="text-gray-400">↓</span> to navigate, <span class="text-gray-400">Enter</span> to select</p>
-</div>
-</div>
-</div>
-</div>
-</body></html>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-white min-h-screen flex flex-col relative overflow-hidden"
+  >
+    <!-- Background Image / Pattern -->
+    <div
+      class="absolute inset-0 z-0 opacity-20 pointer-events-none"
+      data-alt="Abstract green radial gradient background for atmosphere"
+      style="
+        background: radial-gradient(
+          circle at 50% 50%,
+          #149f50 0%,
+          transparent 50%
+        );
+      "
+    ></div>
+    <!-- Main App Placeholder (Background content to simulate overlay) -->
+    <div
+      aria-hidden="true"
+      class="flex-1 flex flex-col items-center pt-20 blur-sm opacity-50 pointer-events-none select-none z-0"
+    >
+      <div class="w-full max-w-5xl px-8">
+        <div class="flex justify-between items-center mb-8">
+          <h1 class="text-3xl font-bold text-white">Knowledge Base</h1>
+          <button
+            class="bg-primary hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined">add</span>
+            Add Item
+          </button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Mock Cards -->
+          <div
+            class="bg-surface-dark h-48 rounded-xl border border-white/5 p-4"
+          ></div>
+          <div
+            class="bg-surface-dark h-48 rounded-xl border border-white/5 p-4"
+          ></div>
+          <div
+            class="bg-surface-dark h-48 rounded-xl border border-white/5 p-4"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Backdrop -->
+    <div
+      class="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <!-- Modal Container -->
+      <div
+        class="w-full max-w-[600px] bg-[#1E1E1E] rounded-xl shadow-2xl border border-white/10 flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200"
+      >
+        <!-- Modal Header -->
+        <div
+          class="flex items-center justify-between px-6 py-5 border-b border-white/10"
+        >
+          <h2
+            class="text-xl font-bold tracking-tight text-white flex items-center gap-3"
+          >
+            <span class="material-symbols-outlined text-primary">link</span>
+            Create Link
+          </h2>
+          <button
+            class="text-gray-400 hover:text-white transition-colors rounded-full p-1 hover:bg-white/5 focus:outline-none focus:bg-white/10"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <!-- Modal Body (Scrollable) -->
+        <div class="p-6 overflow-y-auto custom-scrollbar flex flex-col gap-6">
+          <!-- URL Input -->
+          <div class="flex flex-col gap-2">
+            <label class="text-sm font-medium text-gray-200" for="url"
+              >URL</label
+            >
+            <div class="relative group">
+              <div
+                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+              >
+                <span
+                  class="material-symbols-outlined text-[#9db8a9] group-focus-within:text-primary transition-colors text-xl"
+                  >public</span
+                >
+              </div>
+              <input
+                autofocus=""
+                class="w-full bg-[#29382f] text-white placeholder-[#9db8a9] border border-transparent focus:border-primary focus:ring-1 focus:ring-primary rounded-lg pl-11 pr-4 py-3 text-base outline-none transition-all duration-200"
+                id="url"
+                placeholder="https://example.com/article"
+                type="url"
+              />
+              <!-- Loader hint (hidden by default, could be shown during fetch) -->
+              <div
+                class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none opacity-0"
+              >
+                <span
+                  class="material-symbols-outlined animate-spin text-primary"
+                  >progress_activity</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Title Input -->
+          <div class="flex flex-col gap-2">
+            <label
+              class="text-sm font-medium text-gray-200 flex gap-1"
+              for="title"
+            >
+              Title <span class="text-red-400">*</span>
+            </label>
+            <input
+              class="w-full bg-[#29382f] text-white placeholder-[#9db8a9] border border-transparent focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-4 py-3 text-base outline-none transition-all duration-200"
+              id="title"
+              placeholder="Enter link title"
+              type="text"
+            />
+          </div>
+          <!-- Description Input -->
+          <div class="flex flex-col gap-2">
+            <label class="text-sm font-medium text-gray-200" for="description"
+              >Description</label
+            >
+            <textarea
+              class="w-full bg-[#29382f] text-white placeholder-[#9db8a9] border border-transparent focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-4 py-3 text-base outline-none min-h-[120px] resize-y transition-all duration-200"
+              id="description"
+              placeholder="Add a brief note about this link..."
+            ></textarea>
+          </div>
+          <!-- Tags Input -->
+          <div class="flex flex-col gap-2">
+            <label class="text-sm font-medium text-gray-200" for="tags"
+              >Tags</label
+            >
+            <div
+              class="w-full bg-[#29382f] rounded-lg border border-transparent focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all duration-200 p-2 flex flex-wrap gap-2 items-center min-h-[52px]"
+            >
+              <!-- Existing Tags (Chips) -->
+              <div
+                class="bg-primary/20 text-primary border border-primary/30 rounded-full px-3 py-1 text-sm font-medium flex items-center gap-1 group/chip cursor-default"
+              >
+                #productivity
+                <button
+                  class="hover:text-white transition-colors focus:outline-none"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >close</span
+                  >
+                </button>
+              </div>
+              <div
+                class="bg-primary/20 text-primary border border-primary/30 rounded-full px-3 py-1 text-sm font-medium flex items-center gap-1 group/chip cursor-default"
+              >
+                #tech
+                <button
+                  class="hover:text-white transition-colors focus:outline-none"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >close</span
+                  >
+                </button>
+              </div>
+              <!-- Tag Input Field -->
+              <input
+                class="bg-transparent border-none text-white placeholder-[#9db8a9] focus:ring-0 p-1 text-sm flex-1 min-w-[120px] outline-none h-full"
+                id="tags"
+                placeholder="Add tags..."
+                type="text"
+              />
+            </div>
+            <p class="text-xs text-gray-500 px-1">
+              Press Enter or comma to create a tag
+            </p>
+          </div>
+        </div>
+        <!-- Modal Footer -->
+        <div
+          class="px-6 py-5 border-t border-white/10 flex justify-end gap-3 bg-[#1E1E1E] rounded-b-xl"
+        >
+          <button
+            class="px-5 py-2.5 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+          >
+            Cancel
+          </button>
+          <button
+            class="px-6 py-2.5 rounded-lg text-sm font-medium text-white bg-primary hover:bg-[#128a45] active:bg-[#0f753a] transition-all shadow-lg shadow-primary/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#1E1E1E] focus:ring-primary flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined text-[18px]">check</span>
+            Save Link
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

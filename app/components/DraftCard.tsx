@@ -1,11 +1,11 @@
-import { RegularCardProps } from "../types/RegularCardProps";
+import { WritingCardProps } from "../types/WritingCardProps";
 
 export const DraftCard = ({
   title,
   description,
   tags,
   date,
-}: RegularCardProps) => {
+}: WritingCardProps) => {
   return (
     <div className="group relative flex flex-col bg-[var(--color-bg)] border border-[var(--color-border-dark)] rounded-xl p-5 hover:border-gray-500 hover:-translate-y-1 transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md">
       

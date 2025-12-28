@@ -1,9 +1,10 @@
-import { RegularCardProps } from "../types/RegularCardProps";
+import { WritingCardProps } from "../types/WritingCardProps";
 import { getClassNameByTag } from "../utils/getClassNameByTag";
 
-export const NoteCard = ({ title, description, tags, date }: RegularCardProps) => {
+export const NoteCard = ({ title, description, tags, date }: WritingCardProps) => {
   return (
-    <div className="relative flex flex-col h-full bg-[var(--color-bg)] p-5 rounded-xl border border-[var(--color-border-dark)] hover:border-gray-500 hover:-translate-y-1 transition-all duration-200 group cursor-pointer shadow-sm hover:shadow-md">
+    <div className="relative flex flex-col h-full bg-(--color-bg)
+     p-5 rounded-xl border border-(--color-border-dark) hover:border-gray-500 hover:-translate-y-1 transition-all duration-200 group cursor-pointer shadow-sm hover:shadow-md">
       
       {/* Top-right buttons */}
       <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
@@ -30,7 +31,7 @@ export const NoteCard = ({ title, description, tags, date }: RegularCardProps) =
           className="
             flex items-center justify-center w-8 h-8
             rounded-full 
-            bg-[var(--color-bg)]/20
+            bg-(--color-bg)/20
             text-gray-500 
             opacity-0 group-hover:opacity-100
             transition-all duration-200 transform hover:scale-110 hover:bg-white/20 hover:text-white

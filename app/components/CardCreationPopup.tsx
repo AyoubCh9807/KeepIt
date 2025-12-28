@@ -4,39 +4,48 @@ import { useEffect, useRef, useState } from "react";
 
 interface CardCreationPopupProps {
   onClose: () => void;
+  onSelect: () => void;
+  cardType: string;
+  setCardType: (type: string) => void;
 }
 
-export const CardCreationPopup = ({ onClose }: CardCreationPopupProps) => {
+export const CardCreationPopup = ({ onClose, onSelect, cardType, setCardType }: CardCreationPopupProps) => {
+  
   const cardOptions = [
     {
       icon: "link",
       title: "Link",
       subtitle: "Save a URL bookmark",
       shortcut: "Cmd+1",
+      type: "linkcard"
     },
     {
       icon: "sticky_note_2",
       title: "Note",
       subtitle: "Quick plain text note",
       shortcut: "Cmd+2",
+      type: "notecard"
     },
     {
       icon: "edit_note",
       title: "Draft",
       subtitle: "Rich text editor",
       shortcut: "Cmd+3",
+      type: "draftcard"
     },
     {
       icon: "picture_as_pdf",
       title: "PDF",
       subtitle: "Upload a document",
       shortcut: "Cmd+4",
+      type: "pdfcard"
     },
     {
       icon: "smart_display",
       title: "Video",
       subtitle: "Embed or upload video",
       shortcut: "Cmd+5",
+      type: "videocard"
     },
   ];
 
@@ -100,8 +109,12 @@ export const CardCreationPopup = ({ onClose }: CardCreationPopupProps) => {
         </div>
 
         <div className="flex flex-col p-4 gap-2">
-          {cardOptions.map(({ icon, title, subtitle, shortcut }, index) => (
+          {cardOptions.map(({ icon, title, subtitle, shortcut, type }, index) => (
             <button
+            onClick={() => {
+              setCardType(type);
+              onSelect()
+            }}
               key={title}
               ref={(el) => {
                 cardRefs.current[index] = el;
@@ -120,7 +133,8 @@ export const CardCreationPopup = ({ onClose }: CardCreationPopupProps) => {
                 </span>
               </div>
               <div className="flex flex-col flex-1 min-w-0">
-                <p className="text-white text-base font-medium leading-normal truncate">
+                <p className="text-white text-base font-medium leading-normal truncate"
+                >
                   {title}
                 </p>
                 <p className="text-[#CCCCCC] text-xs font-normal truncate">
