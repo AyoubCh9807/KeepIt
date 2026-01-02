@@ -1,4 +1,4 @@
-import { WritingCardProps } from "../types/WritingCardProps";
+import { WritingCardProps } from "../../types/WritingCardProps";
 
 export const DraftCard = ({
   title,
@@ -63,7 +63,7 @@ export const DraftCard = ({
       {/* Tags & Date */}
       <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
         <div className="flex gap-2">
-          {tags?.map((tag, index) => (
+          {(tags.length > 3 ? tags.slice(0, 3) : tags)?.map((tag, index) => (
             <span
               key={index}
               className="px-2 py-0.5 rounded text-[10px] font-medium bg-orange-500/10 text-orange-400 border border-orange-500/20"
@@ -78,7 +78,7 @@ export const DraftCard = ({
       {/* Overlay button */}
       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center gap-2 backdrop-blur-[1px]">
         <button className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full font-bold text-sm hover:scale-105 transition-transform">
-          Open Note
+          Open Draft
         </button>
       </div>
     </div>

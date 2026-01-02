@@ -2,8 +2,24 @@ import { CardFormProps } from "@/app/types/CardFormProps";
 import { getClassNameByTag } from "@/app/utils/getClassNameByTag";
 import { useState } from "react";
 
-export const PDFCardForm = ({ onClose, onSubmit }: CardFormProps) => {
-  const [tags, setTags] = useState<string[]>([]);
+type CardFormPropsExtended = CardFormProps & {
+  author: string;
+  setAuthor: React.Dispatch<React.SetStateAction<string>>;
+}  
+
+export const PDFCardForm = ({
+  onClose,
+  onSubmit,
+  title,
+  setTitle,
+  description,
+  setDescription,
+  tags,
+  setTags,
+  url,
+  setUrl,
+  author, setAuthor
+}: CardFormPropsExtended) => {
   const [inputVal, setInputVal] = useState<string>("");
 
   const addTag = (tag: string) => {
@@ -89,6 +105,10 @@ export const PDFCardForm = ({ onClose, onSubmit }: CardFormProps) => {
                 placeholder="e.g. Q4 Financial Report"
                 type="text"
                 className="block w-full rounded-lg bg-(--color-surface-lighter) border border-(--color-border-dark) p-3 text-sm text-white placeholder-(--color-text-secondary) focus:border-(--color-primary) focus:ring-1 focus:ring-(--color-primary) outline-none shadow-sm"
+                value={title}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setTitle(e.target.value);
+                }}
               />
             </div>
 
@@ -111,6 +131,10 @@ export const PDFCardForm = ({ onClose, onSubmit }: CardFormProps) => {
                   placeholder="e.g. John Doe"
                   type="text"
                   className="block w-full rounded-lg bg-(--color-surface-lighter) border border-(--color-border-dark) p-3 pl-10 text-sm text-white placeholder-(--color-text-secondary) focus:border-(--color-primary) focus:ring-1 focus:ring-(--color-primary) outline-none shadow-sm"
+                  value={title}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setAuthor && setAuthor(e.target.value);
+                  }}
                 />
               </div>
             </div>
@@ -121,7 +145,7 @@ export const PDFCardForm = ({ onClose, onSubmit }: CardFormProps) => {
                 Tags
               </label>
               <div className="flex flex-wrap gap-2 w-full min-h-[50px] rounded-lg bg-(--color-surface-lighter) border border-(--color-border-dark) px-2 py-2 focus-within:border-(--color-primary) focus-within:ring-1 focus-within:ring-(--color-primary) cursor-text">
-                {tags.map((tag) => (
+                {tags?.map((tag) => (
                   <div
                     key={tag}
                     className={`
@@ -170,6 +194,10 @@ export const PDFCardForm = ({ onClose, onSubmit }: CardFormProps) => {
                 placeholder="Brief summary of the document..."
                 rows={4}
                 className="block w-full resize-none rounded-lg bg-(--color-surface-lighter) border border-(--color-border-dark) p-3 text-sm text-white placeholder-(--color-text-secondary) focus:border-(--color-primary) focus:ring-1 focus:ring-(--color-primary) outline-none shadow-sm"
+                value={description}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                  setDescription(e.target.value);
+                }}
               />
             </div>
           </div>

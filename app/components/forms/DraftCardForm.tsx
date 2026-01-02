@@ -2,22 +2,30 @@ import { CardFormProps } from "@/app/types/CardFormProps";
 import { getClassNameByTag } from "@/app/utils/getClassNameByTag";
 import { useState } from "react";
 
-export const DraftCardForm = ({ onClose, onSubmit }: CardFormProps) => {
-  const [tags, setTags] = useState<string[]>([]);
-  const [inputVal, setInputVal] = useState<string>("");
+export const DraftCardForm = ({
+  onClose,
+  onSubmit,
+  title,
+  setTitle,
+  description,
+  setDescription,
+  tags,
+  setTags,
+}: CardFormProps) => {
+  const [tagInputVal, setTagInputVal] = useState<string>("");
 
   const addTag = (tag: string) => {
     if (tag && !tags.includes(tag)) {
       setTags([...tags, tag]);
-      setInputVal("");
+      setTagInputVal("");
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" || e.key === ",") {
       e.preventDefault();
-      if (!inputVal || tags.includes(inputVal)) return;
-      addTag(inputVal);
+      if (!tagInputVal || tags.includes(tagInputVal)) return;
+      addTag(tagInputVal);
     }
   };
 
@@ -25,21 +33,34 @@ export const DraftCardForm = ({ onClose, onSubmit }: CardFormProps) => {
     setTags(tags.filter((tag) => tag !== unwantedTag));
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputVal(e.target.value);
+  const handleTagInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTagInputVal(e.target.value);
+  };
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
+  const handleDescriptionChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setDescription(e.target.value);
   };
 
   return (
-    <div className="relative w-full max-w-2xl bg-white dark:bg-(--color-surface-dark)
+    <div
+      className="relative w-full max-w-2xl bg-white dark:bg-(--color-surface-dark)
      rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] 
-     border border-(--color-input-border)">
+     border border-(--color-input-border)"
+    >
       <div className="flex items-center justify-between px-6 py-5 border-b border-gray-200 dark:border-border-dark bg-white dark:bg-(--color-surface-dark) z-10">
         <h2 className="text-gray-900 dark:text-white text-xl font-bold tracking-tight">
           Create New Draft
         </h2>
-        <button 
-        onClick={onClose}
-        className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors rounded-full p-1 hover:bg-gray-100 dark:hover:bg-white/10">
+        <button
+          onClick={onClose}
+          className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors rounded-full p-1 hover:bg-gray-100 dark:hover:bg-white/10"
+        >
           <span className="material-symbols-outlined text-[24px]">close</span>
         </button>
       </div>
@@ -62,6 +83,8 @@ export const DraftCardForm = ({ onClose, onSubmit }: CardFormProps) => {
             id="title"
             placeholder="e.g., Project Phoenix Ideas"
             type="text"
+            value={title}
+            onChange={handleTitleChange}
           />
         </div>
 
@@ -81,6 +104,8 @@ export const DraftCardForm = ({ onClose, onSubmit }: CardFormProps) => {
              text-white"
             id="description"
             placeholder="Write your thoughts here... capture everything before it's gone."
+            value={description}
+            onChange={handleDescriptionChange}
           ></textarea>
         </div>
 
@@ -106,8 +131,8 @@ export const DraftCardForm = ({ onClose, onSubmit }: CardFormProps) => {
               id="tags"
               placeholder="Add tags..."
               type="text"
-              value={inputVal}
-              onChange={handleInputChange}
+              value={tagInputVal}
+              onChange={handleTagInputChange}
               onKeyDown={handleKeyDown}
             />
             <p className="text-xs text-gray-500 px-1 mt-2">
@@ -151,19 +176,21 @@ export const DraftCardForm = ({ onClose, onSubmit }: CardFormProps) => {
           </span>
         </label>
         <div className="flex gap-3">
-          <button className="px-5 py-2.5 rounded-lg text-sm font-medium 
+          <button
+            className="px-5 py-2.5 rounded-lg text-sm font-medium 
           text-gray-700 dark:text-gray-300 bg-white dark:bg-transparent 
           border border-(--color-input-border)/40 hover:bg-gray-50
            dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white
             transition-all focus:outline-none focus:ring-2 focus:ring-gray-500
              focus:ring-offset-2 dark:focus:ring-(--color-primary)"
-             onClick={onClose}
-             >
+            onClick={onClose}
+          >
             Cancel
           </button>
-          <button 
-          onClick={onSubmit}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium text-white bg-primary hover:bg-[#118a45] shadow-sm hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-surface-dark">
+          <button
+            onClick={onSubmit}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium text-white bg-primary hover:bg-[#118a45] shadow-sm hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-surface-dark"
+          >
             <span className="material-symbols-outlined text-[18px]">save</span>
             Save Draft
           </button>

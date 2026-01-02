@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
-import { RegularCardProps } from "../types/RegularCardProps";
-import { getClassNameByTag } from "../utils/getClassNameByTag";
+import { useState } from "react";
+import { RegularCardProps } from "../../types/RegularCardProps";
+import { getClassNameByTag } from "../../utils/getClassNameByTag";
 import Link from "next/link";
+import { CardOptionsMenu } from "../ui/CardOptionsMenu";
+
 
 export const VideoCard = ({
   title,
@@ -9,6 +11,9 @@ export const VideoCard = ({
   tags,
   date,
   url,
+  onFavourite,
+  onCopyLink,
+  onReport
 }: RegularCardProps) => {
   const [duration, setDuration] = useState<string | null>(null);
 
@@ -32,11 +37,13 @@ export const VideoCard = ({
           <h3 className="text-lg font-bold text-white leading-tight">
             {title}
           </h3>
-          <button className="text-gray-500 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity -mr-2 -mt-2 p-1">
-            <span className="material-symbols-outlined text-[20px]">
-              more_vert
-            </span>
-          </button>
+          <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+            <CardOptionsMenu
+              onFavourite={onFavourite}
+              onCopyLink={onCopyLink}
+              onReport={onReport}
+            />
+          </div>
         </div>
 
         <p className="text-sm text-gray-400 line-clamp-2 mb-2">{description}</p>
@@ -49,7 +56,7 @@ export const VideoCard = ({
 
         <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
           <div className="flex gap-2">
-            {tags.map((tag, index) => (
+            {(tags.length > 3 ? tags.slice(0, 3) : tags)?.map((tag, index) => (
               <span
                 key={index}
                 className={`px-2 py-0.5 rounded text-[10px] font-medium ${getClassNameByTag(

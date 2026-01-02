@@ -2,8 +2,18 @@
 import { CardFormProps } from "@/app/types/CardFormProps";
 import { ChangeEvent, useEffect, useState } from "react";
 
-export const NoteCardForm = ({ onClose, onSubmit }: CardFormProps) => {
-  const [tags, setTags] = useState<string[]>([]);
+export const NoteCardForm = ({
+  onClose,
+  onSubmit,
+  title,
+  setTitle,
+  description,
+  setDescription,
+  tags,
+  setTags,
+  url,
+  setUrl,
+}: CardFormProps) => {
   const [inputVal, setInputVal] = useState<string>("");
 
   const addTag = (tag: string) => {
@@ -65,6 +75,10 @@ export const NoteCardForm = ({ onClose, onSubmit }: CardFormProps) => {
               id="note-title"
               placeholder="Enter note title..."
               type="text"
+              value={title}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setTitle(e.target.value);
+              }}
             />
           </div>
 
@@ -79,6 +93,10 @@ export const NoteCardForm = ({ onClose, onSubmit }: CardFormProps) => {
               className="w-full min-h-[160px] p-4 rounded-lg bg-gray-50 dark:bg-(--color-input-bg) border-transparent focus:border-primary focus:ring-1 focus:ring-primary text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-[#9db8a9] text-base resize-y transition-all"
               id="note-desc"
               placeholder="Write your thoughts here..."
+              value={description}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                setDescription(e.target.value);
+              }}
             ></textarea>
           </div>
 
@@ -116,8 +134,9 @@ export const NoteCardForm = ({ onClose, onSubmit }: CardFormProps) => {
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <span
-                onClick={() => addTag(inputVal)}
-                className="material-symbols-outlined text-gray-400 dark:text-[#9db8a9] text-[20px]">
+                  onClick={() => addTag(inputVal)}
+                  className="material-symbols-outlined text-gray-400 dark:text-[#9db8a9] text-[20px]"
+                >
                   add
                 </span>
               </div>
@@ -143,9 +162,10 @@ export const NoteCardForm = ({ onClose, onSubmit }: CardFormProps) => {
           >
             Cancel
           </button>
-          <button 
-          onClick={onSubmit}
-          className="px-5 py-2.5 rounded-lg text-sm font-medium text-white bg-(--color-primary) hover:bg-(--color-primary)/90 shadow-sm shadow-primary/20 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-[#1E1E1E]">
+          <button
+            onClick={onSubmit}
+            className="px-5 py-2.5 rounded-lg text-sm font-medium text-white bg-(--color-primary) hover:bg-(--color-primary)/90 shadow-sm shadow-primary/20 transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-[#1E1E1E]"
+          >
             Save Note
           </button>
         </div>
