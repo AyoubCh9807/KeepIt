@@ -4,7 +4,6 @@ import { getClassNameByTag } from "../../utils/getClassNameByTag";
 import Link from "next/link";
 import { CardOptionsMenu } from "../ui/CardOptionsMenu";
 
-
 export const VideoCard = ({
   title,
   description,
@@ -13,7 +12,7 @@ export const VideoCard = ({
   url,
   onFavourite,
   onCopyLink,
-  onReport
+  onReport,
 }: RegularCardProps) => {
   const [duration, setDuration] = useState<string | null>(null);
 
@@ -39,7 +38,14 @@ export const VideoCard = ({
           </h3>
           <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
             <CardOptionsMenu
-              onFavourite={onFavourite}
+              onFavourite={() => {
+                onFavourite({
+                  title: title,
+                  description: description,
+                  tags: tags,
+                  type: "videocard",
+                });
+              }}
               onCopyLink={onCopyLink}
               onReport={onReport}
             />

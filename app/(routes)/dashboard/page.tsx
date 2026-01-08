@@ -54,6 +54,18 @@ export default function Dashboard() {
 
   const [favCards, setFavCards] = useState<Card[]>([]);
 
+  const [activeItem, setActiveItem] = useState<string>("All Boards");
+  const [currentCards, setCurrentCards] = useState<Card[]>(cards);
+
+  useEffect(() => {
+    console.log("Current active item: ", activeItem);
+    console.log("Filtered cards: ", filteredCards);
+    console.log("Fav cards: ", favCards);
+    setCurrentCards(
+      activeItem.toLowerCase() === "all boards" ? filteredCards : favCards
+    );
+  }, [activeItem]);
+
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
@@ -75,7 +87,9 @@ export default function Dashboard() {
     setFavCards([...favCards, card]);
   };
 
-
+  const handleRemoveFavouriteCard = (card: Card) => {
+    setFavCards(favCards.filter((c) => c.title !== card.title));
+  };
 
   useEffect(() => {
     const q = query.toLowerCase();
@@ -92,7 +106,10 @@ export default function Dashboard() {
 
   return (
     <div className="flex h-screen overflow-hidden font-sans relative">
-      <Sidebar />
+      <Sidebar 
+      activeItem={activeItem} 
+      setActiveItem={setActiveItem}
+       />
 
       <main className="flex-1 flex flex-col bg-(--color-surface-dark) min-w-0">
         <ItemsBar
@@ -103,7 +120,7 @@ export default function Dashboard() {
         <ItemFilterBar />
         <div className="flex-1 overflow-y-auto custom-scrollbar p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-20">
-            {filteredCards.map((card, index) => {
+            {currentCards.map((card, index) => {
               return (
                 <CardRenderer
                   title={card.title}
@@ -113,6 +130,7 @@ export default function Dashboard() {
                   cardType={card.type}
                   date={getTodayFormatted()}
                   onFavourite={() => handleFavouriteCard(card)}
+                  onUnfavourite={() => handleRemoveFavouriteCard(card)}
                   onCopyLink={() => {}}
                   onReport={() => {}}
                 />

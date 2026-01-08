@@ -45,7 +45,14 @@ export const LinkCard = ({
 
           {/* Card Options Menu */}
           <CardOptionsMenu
-            onFavourite={onFavourite}
+            onFavourite={() => {
+              onFavourite({
+                title: title,
+                description: description,
+                tags: tags,
+                type: "linkcard"
+              });
+            }}
             onCopyLink={onCopyLink}
             onReport={onReport}
           />

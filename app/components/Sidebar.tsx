@@ -9,12 +9,15 @@ interface SidebarItem {
   label: string;
   icon?: string;
   color?: string;
+  link?: string;
   type?: "board" | "tag" | "library";
 }
 
-export const Sidebar = () => {
+export const Sidebar = ({activeItem, setActiveItem}: {
+  activeItem: string;
+  setActiveItem: React.Dispatch<React.SetStateAction<string>>
+}) => {
   const [username, setUsername] = useState<string>("");
-  const [activeItem, setActiveItem] = useState<string>("All Boards");
   const router = useRouter();
 
   // Fetch user
@@ -40,6 +43,7 @@ export const Sidebar = () => {
     { label: "All Boards", icon: "dashboard" },
     { label: "Recent", icon: "schedule" },
     { label: "Favorites", icon: "favorite" },
+    { label: "Public Links", icon: "public", link: "/public-links" },
   ];
 
   const myBoards: SidebarItem[] = [
@@ -103,7 +107,7 @@ export const Sidebar = () => {
       </nav>
 
       {/* User card */}
-      <SidebarUserCard username={username || "Alex Morgan"} />
+      <SidebarUserCard username={username || "AyoubCh9807"} />
     </aside>
   );
 };

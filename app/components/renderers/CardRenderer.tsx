@@ -16,6 +16,7 @@ interface CardRendererProps {
   date: string;
   url?: string;
   onFavourite: (card: Card) => void;
+  onUnfavourite: (card: Card) => void;
   onCopyLink: () => void;
   onReport: () => void;
 }
@@ -28,6 +29,7 @@ export const CardRenderer = ({
   date,
   url,
   onFavourite,
+  onUnfavourite,
   onCopyLink,
   onReport,
 }: CardRendererProps) => {

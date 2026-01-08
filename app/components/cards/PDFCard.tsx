@@ -18,9 +18,16 @@ export const PDFCard = ({
       {/* Top-right "More" button */}
       <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
         <CardOptionsMenu
-          onFavourite={onFavourite} 
-          onCopyLink={onCopyLink} 
-          onReport={onReport} 
+          onFavourite={() => {
+            onFavourite({
+              title: title,
+              description: description || "Yeah i dunno...",
+              tags: tags || ["#random"],
+              type: "pdfcard",
+            });
+          }}
+          onCopyLink={onCopyLink}
+          onReport={onReport}
         />
       </div>
 

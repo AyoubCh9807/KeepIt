@@ -39,7 +39,14 @@ export const NoteCard = ({
         {/* Options Menu */}
         <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <CardOptionsMenu
-            onFavourite={onFavourite}
+            onFavourite={() => {
+              onFavourite({
+                title: title,
+                description: description,
+                tags: tags,
+                type: "notecard",
+              });
+            }}
             onCopyLink={onCopyLink}
             onReport={onReport}
           />

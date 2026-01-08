@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KeepIt How it Works</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1ce372",
+              "primary-hover": "#17b85c",
+              "background-light": "#f6f8f7",
+              "background-dark": "#111814",
+              "surface-dark": "#1c2620",
+              "docs-surface": "#1E1E1E",
+              "docs-text": "#CCCCCC",
+              "border-dark": "#29382f",
+              "input-border": "#3c5346",
+              "text-secondary": "#9db8a9",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "0.75rem",
+              "2xl": "1rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .mockup-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      .mockup-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .mockup-scroll::-webkit-scrollbar-thumb {
+        background: #3c5346;
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display antialiased text-white selection:bg-primary selection:text-white"
+  >
+    <div class="relative flex min-h-screen w-full flex-col overflow-hidden">
+      <div
+        class="absolute inset-0 z-0 opacity-20 pointer-events-none"
+        style="
+          background: radial-gradient(
+            circle at 50% 10%,
+            #139a43 0%,
+            transparent 40%
+          );
+        "
+      ></div>
+      <header
+        class="fixed top-0 z-50 w-full border-b border-border-dark dark:border-white/10 bg-background-dark/80 backdrop-blur-md"
+      >
+        <div
+          class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+        >
+          <!-- Logo -->
+          <div class="flex items-center gap-2">
+            <img
+              src="/icons/KeepIt.png"
+              alt="KeepIt Logo"
+              class="w-12 h-12 object-contain rounded-lg"
+            />
+            <span class="text-lg font-bold tracking-tight text-white"
+              >KeepIt</span
+            >
+          </div>
+
+          <!-- Nav -->
+          <nav class="hidden md:flex items-center gap-8">
+            <a
+              href="/landing.html"
+              class="text-sm font-medium text-text-secondary hover:text-white transition-colors"
+              >Features</a
+            >
+            <a
+              href="/how_it_works.html"
+              class="text-sm font-medium text-white border-b-2 border-primary pb-0.5 transition-colors"
+              >How it Works</a
+            >
+            <a
+              class="text-sm font-medium text-text-secondary hover:text-white transition-colors"
+              href="/docs.html"
+              >Docs</a
+            >
+          </nav>
+
+          <!-- Actions -->
+          <div class="flex items-center gap-4">
+            <a
+              href="/auth-portal"
+              class="hidden sm:block text-sm font-medium text-text-secondary hover:text-white transition-colors"
+              >Log in</a
+            >
+            <a
+              href="/auth-portal"
+              class="flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-white shadow-sm hover:bg-green-600 transition-all"
+              >Start Saving</a
+            >
+          </div>
+        </div>
+      </header>
+      <main class="relative z-10 flex flex-1 flex-col items-center p-6 md:p-12">
+        <div class="max-w-5xl w-full flex flex-col gap-16">
+          <div class="text-center space-y-6 max-w-3xl mx-auto mt-8">
+            <div
+              class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-surface-dark border border-border-dark text-primary text-xs font-bold uppercase tracking-wider mb-2"
+            >
+              Simple Workflow
+            </div>
+            <h1
+              class="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight"
+            >
+              Your second brain,<br />
+              <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent"
+                >simplified.</span
+              >
+            </h1>
+            <p
+              class="text-text-secondary text-lg md:text-xl font-normal leading-relaxed"
+            >
+              KeepIt helps you capture, organize, and recall your digital life
+              without the clutter. Here is how it works in four simple steps.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div
+              class="group flex flex-col bg-card-content border border-border-dark rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-primary/5"
+            >
+              <div class="p-8 pb-0 flex flex-col gap-4">
+                <div
+                  class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-2"
+                >
+                  <span class="material-symbols-outlined text-3xl">save</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  Save with One Click
+                </h3>
+                <p class="text-text-secondary leading-relaxed">
+                  Don't break your flow. Use our browser extension or keyboard
+                  shortcut to instantly capture articles, images, or notes.
+                </p>
+              </div>
+              <div
+                class="mt-8 mx-8 bg-background-dark border-t border-x border-input-border rounded-t-xl h-48 relative overflow-hidden p-4"
+              >
+                <div
+                  class="flex items-center gap-2 mb-4 border-b border-border-dark pb-3"
+                >
+                  <div class="flex gap-1.5">
+                    <div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+                    <div
+                      class="w-2.5 h-2.5 rounded-full bg-yellow-500/50"
+                    ></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
+                  </div>
+                  <div class="h-2 w-32 bg-surface-dark rounded-full"></div>
+                </div>
+                <div
+                  class="absolute right-6 top-16 group-hover:-translate-y-1 transition-transform duration-500"
+                >
+                  <div
+                    class="bg-surface-dark border border-border-dark rounded-lg shadow-xl p-3 w-40 flex flex-col gap-2"
+                  >
+                    <div class="h-2 w-20 bg-text-secondary/20 rounded"></div>
+                    <button
+                      class="mt-1 w-full bg-primary hover:bg-primary-hover text-white text-xs font-bold py-1.5 rounded transition-colors flex items-center justify-center gap-1"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >add</span
+                      >
+                      Save Page
+                    </button>
+                  </div>
+                </div>
+                <div class="space-y-2 opacity-30">
+                  <div class="h-2 w-3/4 bg-text-secondary rounded"></div>
+                  <div class="h-2 w-full bg-text-secondary rounded"></div>
+                  <div class="h-2 w-5/6 bg-text-secondary rounded"></div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="group flex flex-col bg-card-content border border-border-dark rounded-2xl overflow-hidden hover:border-accent/50 transition-all duration-300 shadow-lg hover:shadow-accent/5"
+            >
+              <div class="p-8 pb-0 flex flex-col gap-4">
+                <div
+                  class="size-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-2"
+                >
+                  <span class="material-symbols-outlined text-3xl">style</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  Organize with Tags
+                </h3>
+                <p class="text-text-secondary leading-relaxed">
+                  No more rigid folder structures. Tag your content fluidly or
+                  let our AI suggest the best boards for your ideas.
+                </p>
+              </div>
+              <div
+                class="mt-8 mx-8 bg-background-dark border-t border-x border-input-border rounded-t-xl h-48 relative overflow-hidden flex flex-col items-center justify-center gap-3 p-6"
+              >
+                <div class="flex gap-2 flex-wrap justify-center">
+                  <span
+                    class="px-3 py-1 rounded-full bg-surface-dark border border-border-dark text-xs text-text-secondary group-hover:border-accent group-hover:text-accent transition-colors cursor-default"
+                    >#Productivity</span
+                  >
+                  <span
+                    class="px-3 py-1 rounded-full bg-surface-dark border border-border-dark text-xs text-text-secondary group-hover:border-purple-400 group-hover:text-purple-400 transition-colors cursor-default"
+                    >#Inspiration</span
+                  >
+                  <span
+                    class="px-3 py-1 rounded-full bg-surface-dark border border-border-dark text-xs text-text-secondary group-hover:border-blue-400 group-hover:text-blue-400 transition-colors cursor-default"
+                    >#Research</span
+                  >
+                </div>
+                <div
+                  class="w-full bg-surface-dark border border-input-border rounded-lg p-3 flex items-center gap-3 mt-2 opacity-80"
+                >
+                  <div
+                    class="w-8 h-8 rounded bg-accent/20 flex items-center justify-center text-accent"
+                  >
+                    <span class="material-symbols-outlined text-sm"
+                      >folder</span
+                    >
+                  </div>
+                  <div class="flex-1">
+                    <div
+                      class="h-2 w-24 bg-text-secondary/40 rounded mb-1"
+                    ></div>
+                    <div class="h-1.5 w-12 bg-text-secondary/20 rounded"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="group flex flex-col bg-card-content border border-border-dark rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-primary/5"
+            >
+              <div class="p-8 pb-0 flex flex-col gap-4">
+                <div
+                  class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-2"
+                >
+                  <span class="material-symbols-outlined text-3xl">search</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  Find Anything Fast
+                </h3>
+                <p class="text-text-secondary leading-relaxed">
+                  Powerful full-text search retrieves your saved items
+                  instantly. Filter by date, type, or tag to pinpoint exactly
+                  what you need.
+                </p>
+              </div>
+              <div
+                class="mt-8 mx-8 bg-background-dark border-t border-x border-input-border rounded-t-xl h-48 relative overflow-hidden p-6"
+              >
+                <div class="relative w-full">
+                  <div
+                    class="absolute inset-y-0 left-3 flex items-center pointer-events-none"
+                  >
+                    <span
+                      class="material-symbols-outlined text-text-secondary text-lg group-hover:text-primary transition-colors"
+                      >search</span
+                    >
+                  </div>
+                  <input
+                    class="w-full bg-surface-dark border border-input-border rounded-lg py-2 pl-10 pr-4 text-sm text-text-secondary placeholder-text-secondary/50 focus:outline-none group-hover:border-primary/50 transition-colors"
+                    disabled=""
+                    placeholder="Project roadmap..."
+                    type="text"
+                  />
+                </div>
+                <div class="mt-4 space-y-2">
+                  <div
+                    class="flex items-center gap-3 p-2 rounded hover:bg-surface-dark transition-colors"
+                  >
+                    <div
+                      class="w-6 h-6 bg-blue-500/20 rounded flex items-center justify-center text-blue-400"
+                    >
+                      <span class="material-symbols-outlined text-xs"
+                        >description</span
+                      >
+                    </div>
+                    <div class="h-2 w-32 bg-text-secondary/50 rounded"></div>
+                  </div>
+                  <div
+                    class="flex items-center gap-3 p-2 rounded hover:bg-surface-dark transition-colors"
+                  >
+                    <div
+                      class="w-6 h-6 bg-green-500/20 rounded flex items-center justify-center text-green-400"
+                    >
+                      <span class="material-symbols-outlined text-xs"
+                        >image</span
+                      >
+                    </div>
+                    <div class="h-2 w-24 bg-text-secondary/50 rounded"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="group flex flex-col bg-card-content border border-border-dark rounded-2xl overflow-hidden hover:border-accent/50 transition-all duration-300 shadow-lg hover:shadow-accent/5"
+            >
+              <div class="p-8 pb-0 flex flex-col gap-4">
+                <div
+                  class="size-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-2"
+                >
+                  <span class="material-symbols-outlined text-3xl"
+                    >notifications_active</span
+                  >
+                </div>
+                <h3 class="text-2xl font-bold text-white">Get Reminded</h3>
+                <p class="text-text-secondary leading-relaxed">
+                  Never forget a deadline or a reading list item. Set custom
+                  reminders and receive notifications right when you need them.
+                </p>
+              </div>
+              <div
+                class="mt-8 mx-8 bg-background-dark border-t border-x border-input-border rounded-t-xl h-48 relative overflow-hidden flex items-center justify-center p-6"
+              >
+                <div
+                  class="relative bg-surface-dark border border-border-dark rounded-xl p-4 w-64 shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
+                >
+                  <div class="flex justify-between items-start mb-2">
+                    <div class="flex items-center gap-2">
+                      <div
+                        class="size-6 bg-accent/20 rounded-full flex items-center justify-center"
+                      >
+                        <span
+                          class="material-symbols-outlined text-accent text-[12px]"
+                          >schedule</span
+                        >
+                      </div>
+                      <span class="text-xs font-bold text-white">Reminder</span>
+                    </div>
+                    <span class="text-[10px] text-text-secondary">Now</span>
+                  </div>
+                  <div class="text-sm text-white font-medium mb-1">
+                    Review Q4 Marketing Plan
+                  </div>
+                  <div class="text-xs text-text-secondary">
+                    Scheduled for today at 2:00 PM
+                  </div>
+                  <div class="mt-3 flex gap-2">
+                    <div
+                      class="h-6 flex-1 bg-accent rounded text-[10px] font-bold text-black flex items-center justify-center"
+                    >
+                      Open
+                    </div>
+                    <div
+                      class="h-6 w-16 bg-border-dark rounded text-[10px] font-medium text-text-secondary flex items-center justify-center"
+                    >
+                      Snooze
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col items-center justify-center py-10 text-center border-t border-border-dark"
+          >
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              Ready to organize your mind?
+            </h2>
+            <div class="flex gap-4">
+              <button
+                class="flex items-center justify-center h-12 rounded-xl bg-primary hover:bg-primary-hover px-8 text-background-dark text-base font-bold transition-all transform active:scale-[0.98] shadow-lg shadow-primary/20"
+              >
+                <a href="/auth-portal">Get Started for Free</a>
+              </button>
+              <button
+                class="flex items-center justify-center h-12 rounded-xl bg-surface-dark hover:bg-border-dark border border-border-dark px-6 text-white text-base font-medium transition-all"
+              >
+                <a href="/docs.html">View Docs</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer
+        class="relative z-10 py-8 text-center border-t border-border-dark bg-background-dark"
+      >
+        <div class="flex flex-col gap-4">
+          <div class="flex justify-center gap-6 text-text-secondary text-sm">
+            <a class="hover:text-white transition-colors" href="#"
+              >Privacy Policy</a
+            >
+            <a class="hover:text-white transition-colors" href="#"
+              >Terms of Service</a
+            >
+            <a class="hover:text-white transition-colors" href="#"
+              >Contact Support</a
+            >
+          </div>
+          <p class="text-text-secondary/40 text-xs">
+            © 2024 KeepIt Inc. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

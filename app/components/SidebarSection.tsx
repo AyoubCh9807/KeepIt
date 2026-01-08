@@ -1,6 +1,6 @@
 interface SidebarSectionProps {
   title: string;
-  items: { label: string; icon?: string; color?: string }[];
+  items: { label: string; icon?: string; color?: string, link?: string; }[];
   activeItem: string;
   onItemClick: (label: string) => void;
   showAddButton?: boolean;
@@ -43,7 +43,7 @@ export const SidebarSection = ({
           ) : (
             <a
               key={i}
-              href="#"
+              href={item.link ?? "#"}
               onClick={() => onItemClick(item.label)}
               className={`flex items-center gap-3 px-2 py-2 text-sm font-medium rounded-lg transition-colors ${
                 activeItem === item.label
